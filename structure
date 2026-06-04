@@ -1,0 +1,8 @@
+FUTURE_ML_01
+
+├── sales_data.csv
+├── Sales_Forecasting.ipynb
+├── README.md
+└── screenshots
+      ├── graph.png
+      └── forecast.png
