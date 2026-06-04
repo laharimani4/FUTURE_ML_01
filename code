@@ -1,0 +1,38 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+df = pd.read_csv("sales_data.csv")
+
+df["Month_Number"] = range(1, len(df)+1)
+
+X = df[["Month_Number"]]
+y = df["Sales"]
+
+model = LinearRegression()
+model.fit(X, y)
+
+future_months = pd.DataFrame({
+    "Month_Number":[13,14,15]
+})
+
+predictions = model.predict(future_months)
+
+print("Future Sales Forecast")
+
+for i,p in enumerate(predictions,start=13):
+    print(f"Month {i}: {round(p,2)}")
+
+plt.plot(df["Month_Number"],df["Sales"],marker="o")
+
+plt.plot(
+    future_months["Month_Number"],
+    predictions,
+    marker="o"
+)
+
+plt.title("Sales Forecast")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+
+plt.show()
